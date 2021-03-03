@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 export const Main = styled.div`
     width: 100%;
@@ -13,6 +13,7 @@ export const Label = styled.label`
     color: #212121;
     font-weight: 600;
     width: auto;
+    margin-bottom: 5px;
 `
 
 export const InputField = styled.input`
@@ -44,4 +45,10 @@ export const Button = styled.button`
     &:active{
         opacity: 0.9;
     }
+`;
+
+export const AlertMenssage = styled.span`
+    color: #EF5350;
+    font-size: 0.9em;
+    margin-top: 5px;
 `;
