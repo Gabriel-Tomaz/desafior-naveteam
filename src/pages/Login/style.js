@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import {Button} from '../../styles/global';
 
-export const LoginBody = styled.div`
+export const LoginForm = styled.form`
     width:  68vh;
     height: 60.8vh;
     border: solid 1px #212121;
