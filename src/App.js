@@ -1,8 +1,14 @@
 import React from 'react';
 
+import Default from './styles/default';
+import Routes from './routes';
+
 const App = () => {
   return(
-    <h1>React app</h1>
+    <>
+      <Default />
+      <Routes />
+    </>
   );
 }
 
