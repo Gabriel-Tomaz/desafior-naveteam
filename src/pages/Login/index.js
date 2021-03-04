@@ -1,6 +1,12 @@
 import React from 'react';
+import {useContext} from 'react';
+import {useHistory} from 'react-router-dom';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+
+import api from '../../services/api';
+
+import {Context} from '../../Context/AuthContext';
 
 import {Main,Label,InputField,AlertMenssage} from '../../styles/global';
 import {LoginForm,Logo,FieldArea,ButtonLogin} from './style';
@@ -8,12 +14,27 @@ import {LoginForm,Logo,FieldArea,ButtonLogin} from './style';
 import LogoImg from '../../assets/img/logo.svg';
 
 const Login = () => {
-
+    const history = useHistory();
 
     const LoginSchema = yup.object().shape({
         email: yup.string().email('Por favor, informe um email valido.').required('Por favor, informe seu email.'),
         password: yup.string().required('Por favor, informe a sua senha.')
     }); 
+
+    const {setAuthenticated,setToken} = useContext(Context);
+
+    const handleLogin = async (data) => {
+        try{
+            const response = await api.post('/users/login', data);
+            localStorage.setItem('token', response.data.token);
+            const token = localStorage.getItem('token');
+            setToken(token);
+            setAuthenticated(true);
+            history.push('/');
+        }catch(error){
+            console.log(error);
+        }
+    }
 
     return(
        <Main>
@@ -25,7 +46,7 @@ const Login = () => {
                     }
                 }
                 validationSchema={LoginSchema}
-                onSubmit={values => console.log(values)}
+                onSubmit={values => handleLogin(values)}
             >
                 {({handleChange,handleBlur,handleSubmit,errors,touched,values}) => (
                     <LoginForm onSubmit={handleSubmit}>
