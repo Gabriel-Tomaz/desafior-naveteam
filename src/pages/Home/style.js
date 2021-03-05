@@ -38,7 +38,6 @@ export const UsersList = styled.div`
     overflow: auto;
 `;
 
-
 //Card do Naver.
 export const UserCard = styled.div`
     width: 100%;

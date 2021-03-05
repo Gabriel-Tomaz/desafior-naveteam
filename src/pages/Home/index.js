@@ -25,9 +25,20 @@ const Home = () => {
         });
     }
 
+    const deleteUser= async (id) => {
+        api.delete(`/navers/${id}`, {
+            headers: {Authorization: `Bearer ${token}`}
+        }).then(response => {
+            console.log(response.data.message);
+            getUsers();
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
     useEffect(() => {
         getUsers();
-    },[]);
+    }, []);
 
     return(
         <Main>
@@ -46,7 +57,7 @@ const Home = () => {
                             <h3>{naver.name}</h3>
                             <h3>{naver.job_role}</h3>
                             <CardActions>
-                                <MdDelete color="#212121" size={24} />
+                                <MdDelete color="#212121" size={24} onClick={() => deleteUser(naver.id)}/>
                                 <MdModeEdit color="#212121" size={24} />
                             </CardActions>
                         </UserCard>
