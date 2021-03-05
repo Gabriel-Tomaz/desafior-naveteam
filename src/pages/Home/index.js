@@ -6,13 +6,18 @@ import api from '../../services/api';
 import { Context } from '../../Context/AuthContext';
 
 import Navbar from '../../components/Navbar';
+import Modal from '../../components/Modal';
+import CloseModal from '../../components/CloseModal';
 import {Main} from '../../styles/global';
-import {HomeContent,HomeListHeader,UsersList,AddButton,UserCard,UserImg,CardActions} from './style';
+import {HomeContent,HomeListHeader,UsersList,AddButton,UserCard,UserImg,CardActions,DeleteContent,CancelButton,DeleteButtom,Menssage} from './style';
 
 
 const Home = () => {    
     const {token} = useContext(Context);
     const [navers, setNavers] = useState([]);
+    const [naverId, setNaverId] = useState();
+    const [showDelete,setShowDelete] = useState(false);
+    const [showMenssage, setShowMenssage] = useState(false);
 
     const getUsers = async () => {
         api.get('/navers', {
@@ -25,15 +30,22 @@ const Home = () => {
         });
     }
 
-    const deleteUser= async (id) => {
+    const modalDeleteNaver = (id) => {
+        setNaverId(id);
+        setShowDelete(true);
+    }
+
+    const deleteNaver= async (id) => {
         api.delete(`/navers/${id}`, {
             headers: {Authorization: `Bearer ${token}`}
         }).then(response => {
             console.log(response.data.message);
             getUsers();
+            setShowDelete(false);
+            setShowMenssage(true);
         }).catch(error => {
             console.log(error);
-        })
+        });
     }
 
     useEffect(() => {
@@ -57,13 +69,30 @@ const Home = () => {
                             <h3>{naver.name}</h3>
                             <h3>{naver.job_role}</h3>
                             <CardActions>
-                                <MdDelete color="#212121" size={24} onClick={() => deleteUser(naver.id)}/>
+                                <MdDelete color="#212121" size={24} onClick={() => modalDeleteNaver(naver.id)}/>
                                 <MdModeEdit color="#212121" size={24} />
                             </CardActions>
                         </UserCard>
                     ))}
                 </UsersList>
             </HomeContent>
+            <Modal openModal={showDelete}>
+                <DeleteContent>
+                    <h2>Excluir Naver</h2>
+                    <p>Tem certeza que deseja excluir este Naver ?</p>
+                    <div>
+                        <CancelButton onClick={() => {setShowDelete(!showDelete)}}>Cancelar</CancelButton>
+                        <DeleteButtom onClick={() => {deleteNaver(naverId)}}>Excluir</DeleteButtom>
+                    </div>
+                </DeleteContent>
+            </Modal>
+            <Modal openModal={showMenssage}>
+                <CloseModal onClick={() => {setShowMenssage(!showMenssage)}}/>
+                <Menssage>
+                    <h2>Naver Excluido</h2>
+                    <p>Naver excluido com sucesso!</p>
+                </Menssage>
+            </Modal>
         </Main>
     );
 }
