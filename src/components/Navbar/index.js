@@ -1,6 +1,5 @@
 import React from 'react';
 import {useContext} from 'react';
-import {useHistory} from 'react-router-dom';
 
 import {Context} from '../../Context/AuthContext';
 import api from '../../services/api';
@@ -9,14 +8,12 @@ import {NavBody,NavLogo,LogoutLabel} from './style';
 import LogoImg from '../../assets/img/logo.svg';
 
 const Navbar = () => {
-    const history = useHistory();
-    const {setAuthenticated} = useContext(Context);
+    const {setToken} = useContext(Context);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
+        setToken('');
         api.defaults.headers.Authorization = undefined;
-        history.push('/login');
-        setAuthenticated(false);
     }
 
     return(
