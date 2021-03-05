@@ -1,6 +1,6 @@
 import React from 'react';
 import {useContext} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory,Redirect} from 'react-router-dom';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 
@@ -21,19 +21,23 @@ const Login = () => {
         password: yup.string().required('Por favor, informe a sua senha.')
     }); 
 
-    const {setAuthenticated,setToken} = useContext(Context);
+    const {token,setToken} = useContext(Context);
 
     const handleLogin = async (data) => {
         try{
             const response = await api.post('/users/login', data);
             localStorage.setItem('token', response.data.token);
-            const token = localStorage.getItem('token');
-            setToken(token);
-            setAuthenticated(true);
+            setToken(response.data.token);
             history.push('/');
         }catch(error){
             console.log(error);
         }
+    }
+
+    if(token !== ''){
+        return <Redirect to={'/'}/>
+    }else if(typeof token !== 'string'){
+        return <></>
     }
 
     return(
