@@ -5,18 +5,25 @@ import api from '../services/api';
 const Context = createContext();
 
 const AuthProvider = ({children}) => {
-    const [authenticated, setAuthenticated] = useState(false);
-    const [token, setToken] = useState('');
+    const [token, setToken] = useState(null);
+
+    useEffect(() => {
+        const tokenAux = localStorage.getItem('token');
+        if(tokenAux){
+            setToken(tokenAux);
+        }else{
+            setToken('');
+        }
+    },[]);
 
     useEffect(() => {
         if(token){
             api.defaults.headers.Authorization = `Bearer ${token}`;
-            setAuthenticated(true);
         }
     },[token]);
 
     return(
-        <Context.Provider value={{authenticated,setAuthenticated,setToken}}>
+        <Context.Provider value={{token,setToken}}>
             {children}
         </Context.Provider>
     );

@@ -4,14 +4,16 @@ import {Route,Redirect} from 'react-router-dom';
 
 import {Context} from '../../Context/AuthContext';
 
-const PrivateRoute = ({isPrivate, ...res}) => {
-    const {authenticated} = useContext(Context);
+const PrivateRoute = ({...res}) => {
+    const {token} = useContext(Context);
 
-    if(isPrivate && !authenticated){
+    if(token === ''){
          return <Redirect to="/login" />
+    }else if(typeof token === 'string'){
+        return <Route {...res}/>   
     }
 
-    return <Route {...res}/>
+    return <></>
 }
 
 export default PrivateRoute;

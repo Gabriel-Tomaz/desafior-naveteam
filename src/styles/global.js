@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
     width: 100%;
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: none;
 `;
 
 export const Label = styled.label`
@@ -40,7 +42,7 @@ export const Button = styled.button`
     border: none;
     position: relative;
     cursor: pointer;
-    transition: all 0.2s;
+    text-transform: capitalize;
 
     &:active{
         opacity: 0.9;
