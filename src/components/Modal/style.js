@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const ModalBody = styled.div`
     width: 100%;
     height: 100vh;
@@ -15,12 +16,12 @@ export const ModalBody = styled.div`
 `;
 
 export const ModalContent = styled.div`
-    min-width: 500px;
+    min-width: 590px;
     width: auto;
     height: auto;
-    min-height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #FFF;
+    position: relative;
 `;

@@ -87,3 +87,59 @@ export const CardActions = styled.div`
         }
     }
 `;
+
+//Delete Naver
+export const DeleteContent = styled.div`
+    width: 90%;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+
+    h2{
+        font-weight: 600;
+        color: #212121;
+    }
+
+    p{
+        color: #212121;
+    }
+
+    div{
+        width: 70%;
+        display: flex;
+        justify-content: space-around;
+        align-self: flex-end;
+    }
+`;
+
+export const DeleteButtom = styled(Button)`
+    width: 175px;
+`;
+
+export const CancelButton = styled(Button)`
+    width: 175px;
+    background-color: #FFF;
+    border: solid 1px #212121;
+    color: #212121;
+`; 
+
+export const Menssage = styled.div`
+    width: 90%;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    
+    h2{
+        color: #212121;
+        font-weight: 600;
+    }
+
+    p{
+        color: #212121;
+        margin-top: 30px;
+    }
+`;
