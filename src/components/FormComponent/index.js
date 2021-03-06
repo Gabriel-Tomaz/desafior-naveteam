@@ -1,17 +1,30 @@
 import React from 'react';
+import {useContext} from 'react';
+import {useHistory} from 'react-router-dom';
 import {MdKeyboardArrowLeft} from 'react-icons/md';
+
+import {Context} from '../../Context/NaverContext';
 
 import {Label,InputField,Button} from '../../styles/global';
 import {FormContent,FormHeader,Form,FieldAreaForm} from './style';
 
-const FormComponent = ({Title}) => {
+const FormComponent = ({Title,onSubmit}) => {
+    const history = useHistory();
+    const {naver,setNaver} = useContext(Context);
+
+    const testDois = () => {
+        setNaver('OLha só que legal');
+    }
+
+    console.log(naver);
+
     return(
         <FormContent>
             <FormHeader>
-                <MdKeyboardArrowLeft color="#212121" size={36}/>
+                <MdKeyboardArrowLeft color="#212121" size={36} onClick={() => {history.goBack()}}/>
                 <h2>{Title}</h2>
             </FormHeader>
-            <Form>
+            <Form onSubmit={() => testDois()}>
                 <FieldAreaForm>
                     <Label>Nome</Label>
                     <InputField></InputField>

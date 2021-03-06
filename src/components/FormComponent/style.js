@@ -23,6 +23,10 @@ export const FormHeader = styled.div`
         font-weight: 600;
         color: #212121;
     }
+
+    svg{
+        cursor: pointer;
+    }
 `;
 
 export const Form = styled.form`
