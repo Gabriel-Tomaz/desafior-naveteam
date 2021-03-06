@@ -13,7 +13,9 @@ const FormComponent = ({Title,onSubmit}) => {
     const history = useHistory();
     const {naver,setNaver} = useContext(Context);
 
-    console.log(naver);
+    const submit = (values) => {
+        setNaver(values);
+    }
 
     return(
         <Formik
@@ -28,7 +30,7 @@ const FormComponent = ({Title,onSubmit}) => {
                 }
             }
 
-            onSubmit={values => setNaver(values)}
+            onSubmit={values => submit(values)}
         >
             {({handleChange,handleBlur,handleSubmit,values}) => (
                 <FormContent>

@@ -1,7 +1,8 @@
 import React from 'react';
-import {useContext} from 'react';
+import {useContext,useEffect} from 'react';
 
 import {Context} from '../../Context/NaverContext';
+import api from '../../services/api';
 
 import Navbar from '../../components/Navbar';
 import FormComponent from '../../components/FormComponent';
@@ -10,15 +11,28 @@ import {Main} from '../../styles/global';
 
 
 const Register = () => {
-    const {naver} = useContext(Context);
+    const {naver,setNaver} = useContext(Context);
 
-    console.log(naver);
+    const addNaver = async (data) => {
+        api.post('/navers',data).then(()=>{
+            console.log('Cadastrado com sucesso!');
+            setNaver('');
+        }).catch(error => {
+            console.log('Erro ao cadastrar!');
+        })
+    } 
+
+    useEffect(() => {
+        if(naver !== ''){
+            addNaver(naver);
+        }
+    },[naver]);
 
     return(
         <Main>
             <Navbar />
             <FormComponent 
-                Title="Adicioanr Naver"
+                Title="Adicionar Naver"
             />
         </Main>
     );

@@ -4,7 +4,7 @@ import {createContext,useState} from 'react';
 const Context = createContext();
 
 const NaverProvider = ({children}) => {
-    const [naver, setNaver] = useState();
+    const [naver, setNaver] = useState('');
 
 
 
