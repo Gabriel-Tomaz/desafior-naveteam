@@ -1,6 +1,7 @@
 import React from 'react';
 import {useContext} from 'react';
 import {useHistory} from 'react-router-dom';
+import {Formik} from 'formik';
 import {MdKeyboardArrowLeft} from 'react-icons/md';
 
 import {Context} from '../../Context/NaverContext';
@@ -12,51 +13,100 @@ const FormComponent = ({Title,onSubmit}) => {
     const history = useHistory();
     const {naver,setNaver} = useContext(Context);
 
-    const testDois = () => {
-        setNaver('OLha só que legal');
-    }
-
     console.log(naver);
 
     return(
-        <FormContent>
-            <FormHeader>
-                <MdKeyboardArrowLeft color="#212121" size={36} onClick={() => {history.goBack()}}/>
-                <h2>{Title}</h2>
-            </FormHeader>
-            <Form onSubmit={() => testDois()}>
-                <FieldAreaForm>
-                    <Label>Nome</Label>
-                    <InputField></InputField>
-                </FieldAreaForm>
+        <Formik
+            initialValues={
+                {
+                    name: '',
+                    job_role: '',
+                    birthdate: '',
+                    admission_date: '',
+                    project: '',
+                    url: '',
+                }
+            }
 
-                <FieldAreaForm>
-                    <Label>Cargo</Label>
-                    <InputField></InputField>
-                </FieldAreaForm>
-
-                <FieldAreaForm>
-                    <Label>Idade</Label>
-                    <InputField></InputField>
-                </FieldAreaForm>
-
-                <FieldAreaForm>
-                    <Label>Tempo de Empresa</Label>
-                    <InputField></InputField>
-                </FieldAreaForm>
-
-                <FieldAreaForm>
-                    <Label>Projetos que participou</Label>
-                    <InputField></InputField>
-                </FieldAreaForm>
-
-                <FieldAreaForm>
-                    <Label>URL da foto do Naver</Label>
-                    <InputField></InputField>
-                </FieldAreaForm>
-                <Button>Salvar</Button>
-            </Form>
-        </FormContent>
+            onSubmit={values => setNaver(values)}
+        >
+            {({handleChange,handleBlur,handleSubmit,values}) => (
+                <FormContent>
+                    <FormHeader>
+                        <MdKeyboardArrowLeft color="#212121" size={36} onClick={() => {history.goBack()}}/>
+                        <h2>{Title}</h2>
+                    </FormHeader>
+                    <Form onSubmit={handleSubmit}>
+                        <FieldAreaForm>
+                            <Label>Nome</Label>
+                            <InputField 
+                                placeholder="Nome"
+                                name="name" 
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.name}
+                            />
+                        </FieldAreaForm>
+        
+                        <FieldAreaForm>
+                            <Label>Cargo</Label>
+                            <InputField 
+                                placeholder="Cargo"
+                                name="job_role" 
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.job_role}
+                            />
+                        </FieldAreaForm>
+        
+                        <FieldAreaForm>
+                            <Label>Idade</Label>
+                            <InputField 
+                                placeholder="Idade"
+                                name="birthdate" 
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.birthdate}
+                            />
+                        </FieldAreaForm>
+        
+                        <FieldAreaForm>
+                            <Label>Tempo de Empresa</Label>
+                            <InputField 
+                                placeholder="Tempo de empresa"
+                                name="admission_date" 
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.admission_date}
+                            />
+                        </FieldAreaForm>
+        
+                        <FieldAreaForm>
+                            <Label>Projetos que participou</Label>
+                            <InputField 
+                                placeholder="Projetos que participou"
+                                name="project" 
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.project}
+                            />
+                        </FieldAreaForm>
+        
+                        <FieldAreaForm>
+                            <Label>URL da foto do Naver</Label>
+                            <InputField 
+                                placeholder="Url da foto do Naver"
+                                name="url" 
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.url}
+                            />
+                        </FieldAreaForm>
+                        <Button type="submit">Salvar</Button>
+                    </Form>
+                </FormContent>
+            )}
+        </Formik>
     );
 }
 
