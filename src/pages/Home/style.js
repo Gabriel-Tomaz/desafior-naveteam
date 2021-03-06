@@ -115,22 +115,3 @@ export const CancelButton = styled(Button)`
     border: solid 1px #212121;
     color: #212121;
 `; 
-
-export const Menssage = styled.div`
-    width: 90%;
-    height: 160px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    
-    h2{
-        color: #212121;
-        font-weight: 600;
-    }
-
-    p{
-        color: #212121;
-        margin-top: 30px;
-    }
-`;

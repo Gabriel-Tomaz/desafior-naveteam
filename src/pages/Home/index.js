@@ -9,8 +9,8 @@ import { Context } from '../../Context/AuthContext';
 import Navbar from '../../components/Navbar';
 import Modal from '../../components/Modal';
 import CloseModal from '../../components/CloseModal';
-import {Main,Button} from '../../styles/global';
-import {HomeContent,HomeListHeader,UsersList,UserCard,UserImg,CardActions,DeleteContent,CancelButton,Menssage} from './style';
+import {Main,Button,Menssage} from '../../styles/global';
+import {HomeContent,HomeListHeader,UsersList,UserCard,UserImg,CardActions,DeleteContent,CancelButton} from './style';
 
 
 const Home = () => {    

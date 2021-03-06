@@ -10,7 +10,7 @@ import {Context} from '../../Context/NaverContext';
 import {Label,InputField,Button,AlertMenssage} from '../../styles/global';
 import {FormContent,FormHeader,Form,FieldAreaForm} from './style';
 
-const FormComponent = ({Title,onSubmit}) => {
+const FormComponent = ({Title}) => {
     const history = useHistory();
     const {setNaver} = useContext(Context);
 
@@ -38,7 +38,10 @@ const FormComponent = ({Title,onSubmit}) => {
                 }
             }
             validationSchema={formSchema}
-            onSubmit={values => setNaver(values)}
+            onSubmit={(values, {resetForm}) => {
+                setNaver(values);
+                resetForm();
+            }}
         >
             {({handleChange,handleBlur,handleSubmit,errors,touched,values}) => (
                 <FormContent>
