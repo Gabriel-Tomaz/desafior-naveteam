@@ -63,4 +63,5 @@ export const AlertMenssage = styled.span`
     color: #EF5350;
     font-size: 0.9em;
     margin-top: 5px;
+    width: 100%;
 `;

@@ -2,20 +2,28 @@ import React from 'react';
 import {useContext} from 'react';
 import {useHistory} from 'react-router-dom';
 import {Formik} from 'formik';
+import * as yup from 'yup';
 import {MdKeyboardArrowLeft} from 'react-icons/md';
 
 import {Context} from '../../Context/NaverContext';
 
-import {Label,InputField,Button} from '../../styles/global';
+import {Label,InputField,Button,AlertMenssage} from '../../styles/global';
 import {FormContent,FormHeader,Form,FieldAreaForm} from './style';
 
 const FormComponent = ({Title,onSubmit}) => {
     const history = useHistory();
-    const {naver,setNaver} = useContext(Context);
+    const {setNaver} = useContext(Context);
 
-    const submit = (values) => {
-        setNaver(values);
-    }
+    const formSchema = yup.object().shape({
+        name: yup.string()
+            .min(3,'Por favor, informe um nome válido.')
+            .required('Por favor, informe seu nome.'),
+        job_role: yup.string().required('Por favor, informe seu cargo.'),
+        birthdate: yup.string().required('Por favor, informe sua data de nascimento.'),
+        admission_date: yup.string().required('Por favor, informe sua data de admissão.'),
+        project: yup.string().required('Por favor, informe pelo menos um projeto.'),
+        url: yup.string().required('Por favor, informe a URL da foto.'),
+    });
 
     return(
         <Formik
@@ -29,10 +37,10 @@ const FormComponent = ({Title,onSubmit}) => {
                     url: '',
                 }
             }
-
-            onSubmit={values => submit(values)}
+            validationSchema={formSchema}
+            onSubmit={values => setNaver(values)}
         >
-            {({handleChange,handleBlur,handleSubmit,values}) => (
+            {({handleChange,handleBlur,handleSubmit,errors,touched,values}) => (
                 <FormContent>
                     <FormHeader>
                         <MdKeyboardArrowLeft color="#212121" size={36} onClick={() => {history.goBack()}}/>
@@ -48,6 +56,9 @@ const FormComponent = ({Title,onSubmit}) => {
                                 onBlur={handleBlur}
                                 value={values.name}
                             />
+                            {errors.name && touched.name ? (
+                                <AlertMenssage>{errors.name}</AlertMenssage>
+                            ):null}
                         </FieldAreaForm>
         
                         <FieldAreaForm>
@@ -59,28 +70,37 @@ const FormComponent = ({Title,onSubmit}) => {
                                 onBlur={handleBlur}
                                 value={values.job_role}
                             />
+                            {errors.job_role && touched.job_role ? (
+                                <AlertMenssage>{errors.job_role}</AlertMenssage>
+                            ):null}
                         </FieldAreaForm>
         
                         <FieldAreaForm>
-                            <Label>Idade</Label>
+                            <Label>Data de Nascimento</Label>
                             <InputField 
-                                placeholder="Idade"
+                                placeholder="Data de Nascimento"
                                 name="birthdate" 
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.birthdate}
                             />
+                            {errors.birthdate && touched.birthdate ? (
+                                <AlertMenssage>{errors.birthdate}</AlertMenssage>
+                            ):null}
                         </FieldAreaForm>
         
                         <FieldAreaForm>
-                            <Label>Tempo de Empresa</Label>
+                            <Label>Data de Admissão</Label>
                             <InputField 
-                                placeholder="Tempo de empresa"
+                                placeholder="Data de Admissão"
                                 name="admission_date" 
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.admission_date}
                             />
+                            {errors.admission_date && touched.admission_date ? (
+                                <AlertMenssage>{errors.admission_date}</AlertMenssage>
+                            ):null}
                         </FieldAreaForm>
         
                         <FieldAreaForm>
@@ -92,6 +112,9 @@ const FormComponent = ({Title,onSubmit}) => {
                                 onBlur={handleBlur}
                                 value={values.project}
                             />
+                            {errors.project && touched.project ? (
+                                <AlertMenssage>{errors.project}</AlertMenssage>
+                            ):null}
                         </FieldAreaForm>
         
                         <FieldAreaForm>
@@ -103,6 +126,9 @@ const FormComponent = ({Title,onSubmit}) => {
                                 onBlur={handleBlur}
                                 value={values.url}
                             />
+                            {errors.url && touched.url ? (
+                                <AlertMenssage>{errors.url}</AlertMenssage>
+                            ):null}
                         </FieldAreaForm>
                         <Button type="submit">Salvar</Button>
                     </Form>
