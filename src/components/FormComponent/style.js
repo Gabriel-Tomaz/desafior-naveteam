@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import {FieldArea} from '../../styles/global';
 
-export const RegisterContent = styled.div`
+export const FormContent = styled.div`
     width: 50%;
     height: auto;
     min-height: 60vh;
@@ -12,7 +12,7 @@ export const RegisterContent = styled.div`
     align-items: center;
 `;
 
-export const RegisterHeader = styled.div`
+export const FormHeader = styled.div`
     width: 100%;
     height: 50px;
     display: flex;
@@ -25,7 +25,7 @@ export const RegisterHeader = styled.div`
     }
 `;
 
-export const RegisterForm = styled.form`
+export const Form = styled.form`
     width: 100%;
     height: auto;
     min-height: 50vh;   
@@ -43,6 +43,6 @@ export const RegisterForm = styled.form`
     }
 `;
 
-export const FieldAreaRegister = styled(FieldArea)`
+export const FieldAreaForm = styled(FieldArea)`
     width: 95%;
 `
