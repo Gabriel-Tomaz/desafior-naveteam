@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState, useEffect,useContext} from 'react';
 import {MdDelete,MdModeEdit} from 'react-icons/md';
+import {useHistory} from 'react-router-dom';
 
 import api from '../../services/api';
 import { Context } from '../../Context/AuthContext';
@@ -8,11 +9,12 @@ import { Context } from '../../Context/AuthContext';
 import Navbar from '../../components/Navbar';
 import Modal from '../../components/Modal';
 import CloseModal from '../../components/CloseModal';
-import {Main} from '../../styles/global';
-import {HomeContent,HomeListHeader,UsersList,AddButton,UserCard,UserImg,CardActions,DeleteContent,CancelButton,DeleteButtom,Menssage} from './style';
+import {Main,Button} from '../../styles/global';
+import {HomeContent,HomeListHeader,UsersList,UserCard,UserImg,CardActions,DeleteContent,CancelButton,Menssage} from './style';
 
 
 const Home = () => {    
+    const history = useHistory();
     const {token} = useContext(Context);
     const [navers, setNavers] = useState([]);
     const [naverId, setNaverId] = useState();
@@ -23,7 +25,6 @@ const Home = () => {
         api.get('/navers', {
             headers: {Authorization: `Bearer ${token}`}
         }).then(response => {
-            console.log(response.data);
             setNavers(response.data);
         }).catch(error => {
             console.log(error);
@@ -58,7 +59,7 @@ const Home = () => {
             <HomeContent>
                 <HomeListHeader>
                     <h1>Navers</h1>
-                    <AddButton>Adicionar Naver</AddButton>
+                    <Button onClick={() => {history.push('/Register')}}>Adicionar Naver</Button>
                 </HomeListHeader>
                 <UsersList>
                     {navers.map(naver => (
@@ -76,16 +77,20 @@ const Home = () => {
                     ))}
                 </UsersList>
             </HomeContent>
+
+            {/*Modal de exclusão do Naver*/}
             <Modal openModal={showDelete}>
                 <DeleteContent>
                     <h2>Excluir Naver</h2>
                     <p>Tem certeza que deseja excluir este Naver ?</p>
                     <div>
                         <CancelButton onClick={() => {setShowDelete(!showDelete)}}>Cancelar</CancelButton>
-                        <DeleteButtom onClick={() => {deleteNaver(naverId)}}>Excluir</DeleteButtom>
+                        <Button onClick={() => {deleteNaver(naverId)}}>Excluir</Button>
                     </div>
                 </DeleteContent>
             </Modal>
+
+            {/*Modal de menssagem da exclusão*/}
             <Modal openModal={showMenssage}>
                 <CloseModal onClick={() => {setShowMenssage(!showMenssage)}}/>
                 <Menssage>

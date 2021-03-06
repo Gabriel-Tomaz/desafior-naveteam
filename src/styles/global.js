@@ -32,8 +32,18 @@ export const InputField = styled.input`
 `;
 
 
+export const FieldArea = styled.div`
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+`;
+
+
 export const Button = styled.button`
     width: auto;
+    min-width: 175px;
     height: 40px;
     background-color: #212121;
     font-weight: 600;

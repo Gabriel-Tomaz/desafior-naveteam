@@ -24,10 +24,6 @@ export const HomeListHeader = styled.div`
     }
 `;
 
-export const AddButton = styled(Button)`
-    width: 175px; 
-`;
-
 export const UsersList = styled.div`
     width: 90%;
     height: 60vh;
@@ -114,12 +110,7 @@ export const DeleteContent = styled.div`
     }
 `;
 
-export const DeleteButtom = styled(Button)`
-    width: 175px;
-`;
-
 export const CancelButton = styled(Button)`
-    width: 175px;
     background-color: #FFF;
     border: solid 1px #212121;
     color: #212121;
