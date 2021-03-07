@@ -8,8 +8,8 @@ import api from '../../services/api';
 
 import {Context} from '../../Context/AuthContext';
 
-import {Main,Label,InputField,AlertMenssage} from '../../styles/global';
-import {LoginForm,Logo,FieldArea,ButtonLogin} from './style';
+import {Main,Label,InputField,AlertMenssage,FieldArea} from '../../styles/global';
+import {LoginForm,Logo,ButtonLogin} from './style';
 
 import LogoImg from '../../assets/img/logo.svg';
 

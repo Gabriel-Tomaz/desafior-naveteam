@@ -32,8 +32,18 @@ export const InputField = styled.input`
 `;
 
 
+export const FieldArea = styled.div`
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+`;
+
+
 export const Button = styled.button`
     width: auto;
+    min-width: 175px;
     height: 40px;
     background-color: #212121;
     font-weight: 600;
@@ -53,4 +63,25 @@ export const AlertMenssage = styled.span`
     color: #EF5350;
     font-size: 0.9em;
     margin-top: 5px;
+    width: 100%;
+`;
+
+//Componente de Messagem usado dentro do Modal.
+export const Menssage = styled.div`
+    width: 90%;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    
+    h2{
+        color: #212121;
+        font-weight: 600;
+    }
+
+    p{
+        color: #212121;
+        margin-top: 30px;
+    }
 `;

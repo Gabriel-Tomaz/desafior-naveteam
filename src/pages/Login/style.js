@@ -16,14 +16,6 @@ export const Logo = styled.img`
     max-width: 50%;
 `;
 
-export const FieldArea = styled.div`
-    width: 80%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-`;
-
 export const ButtonLogin = styled(Button)`
     width: 80%;
 `
