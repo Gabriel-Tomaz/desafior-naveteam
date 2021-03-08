@@ -35,7 +35,7 @@ const Home = () => {
         });
     }
 
-    //Deleta um Naver
+    //Deletar um Naver
     const deleteNaver= async (id) => {
         api.delete(`/navers/${id}`, {
             headers: {Authorization: `Bearer ${token}`}
