@@ -1,5 +1,5 @@
 import React from 'react';
-import {useContext} from 'react';
+import {useContext,useState,useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import {Formik} from 'formik';
 import * as yup from 'yup';
@@ -8,11 +8,21 @@ import {MdKeyboardArrowLeft} from 'react-icons/md';
 import {Context} from '../../Context/NaverContext';
 
 import {Label,InputField,Button,AlertMenssage} from '../../styles/global';
-import {FormContent,FormHeader,Form,FieldAreaForm} from './style';
+import {FormContent,FormHeader,Form,FieldAreaForm,MaskedInput} from './style';
 
-const FormComponent = ({Title}) => {
+const FormComponent = ({Title,data}) => {
     const history = useHistory();
     const {setNaver} = useContext(Context);
+    const [initialValues, setInitialValues] = useState(
+        {
+            name: '',
+            job_role: '',
+            birthdate: '',
+            admission_date: '',
+            project: '',
+            url: '',
+        }
+    );
 
     const formSchema = yup.object().shape({
         name: yup.string()
@@ -25,18 +35,37 @@ const FormComponent = ({Title}) => {
         url: yup.string().required('Por favor, informe a URL da foto.'),
     });
 
+    const dataConvert = (date) => {
+        const datePart = date.split('-');
+        const year = datePart[0];
+        const mounth = datePart[1];
+        const day = datePart[2].split('T');
+
+        const newDate = day[0]+mounth+year;
+
+        return newDate;
+    } 
+
+    useEffect(() => {
+        if(data !== undefined){
+
+            setInitialValues(
+                {
+                        name: data.name,
+                        job_role: data.job_role,
+                        birthdate: dataConvert(data.birthdate),
+                        admission_date: dataConvert(data.admission_date),
+                        project: data.project,
+                        url: data.url,
+                }
+            );
+        } 
+    },[data]);
+
     return(
         <Formik
-            initialValues={
-                {
-                    name: '',
-                    job_role: '',
-                    birthdate: '',
-                    admission_date: '',
-                    project: '',
-                    url: '',
-                }
-            }
+            enableReinitialize={true}
+            initialValues={initialValues}
             validationSchema={formSchema}
             onSubmit={(values, {resetForm}) => {
                 setNaver(values);
@@ -80,8 +109,9 @@ const FormComponent = ({Title}) => {
         
                         <FieldAreaForm>
                             <Label>Data de Nascimento</Label>
-                            <InputField 
+                            <MaskedInput 
                                 placeholder="Data de Nascimento"
+                                mask="99/99/9999"
                                 name="birthdate" 
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -94,8 +124,9 @@ const FormComponent = ({Title}) => {
         
                         <FieldAreaForm>
                             <Label>Data de Admissão</Label>
-                            <InputField 
+                            <MaskedInput 
                                 placeholder="Data de Admissão"
+                                mask="99/99/9999"
                                 name="admission_date" 
                                 onChange={handleChange}
                                 onBlur={handleBlur}

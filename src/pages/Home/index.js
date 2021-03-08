@@ -95,7 +95,7 @@ const Home = () => {
                             <h3>{naver.job_role}</h3>
                             <CardActions>
                                 <MdDelete color="#212121" size={24} onClick={() => modalDeleteNaver(naver.id)}/>
-                                <MdModeEdit color="#212121" size={24} />
+                                <MdModeEdit color="#212121" size={24} onClick={() => {history.push(`/Edit/${naver.id}`)}}/>
                             </CardActions>
                         </UserCard>
                     ))}
@@ -129,6 +129,7 @@ const Home = () => {
                 <Details 
                     naver={naver}
                     deleteNaver={() => modalDeleteNaver(naverId)}
+                    editNaver={() => {history.push(`/Edit/${naverId}`)}}
                 />
             </Modal>
 
