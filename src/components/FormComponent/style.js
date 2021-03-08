@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import InputMask from 'react-input-mask';
+
 import {FieldArea} from '../../styles/global';
 
 export const FormContent = styled.div`
@@ -49,4 +51,17 @@ export const Form = styled.form`
 
 export const FieldAreaForm = styled(FieldArea)`
     width: 95%;
+`;
+
+export const MaskedInput = styled(InputMask)`
+    width: auto;
+    height: 40px;
+    outline: none;
+    border: solid 1px #424242;
+    font-size: 1.1em;
+    padding: 0 12px;
+
+    &::placeholder{
+        color: #9E9E9E;
+    }
 `

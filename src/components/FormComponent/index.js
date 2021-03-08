@@ -8,7 +8,7 @@ import {MdKeyboardArrowLeft} from 'react-icons/md';
 import {Context} from '../../Context/NaverContext';
 
 import {Label,InputField,Button,AlertMenssage} from '../../styles/global';
-import {FormContent,FormHeader,Form,FieldAreaForm} from './style';
+import {FormContent,FormHeader,Form,FieldAreaForm,MaskedInput} from './style';
 
 const FormComponent = ({Title}) => {
     const history = useHistory();
@@ -80,8 +80,9 @@ const FormComponent = ({Title}) => {
         
                         <FieldAreaForm>
                             <Label>Data de Nascimento</Label>
-                            <InputField 
+                            <MaskedInput 
                                 placeholder="Data de Nascimento"
+                                mask="99/99/9999"
                                 name="birthdate" 
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -94,8 +95,9 @@ const FormComponent = ({Title}) => {
         
                         <FieldAreaForm>
                             <Label>Data de Admissão</Label>
-                            <InputField 
+                            <MaskedInput 
                                 placeholder="Data de Admissão"
+                                mask="99/99/9999"
                                 name="admission_date" 
                                 onChange={handleChange}
                                 onBlur={handleBlur}
