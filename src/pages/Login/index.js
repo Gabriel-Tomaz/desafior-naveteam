@@ -1,20 +1,23 @@
 import React from 'react';
-import {useContext} from 'react';
+import {useContext,useState} from 'react';
 import {useHistory,Redirect} from 'react-router-dom';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 
 import api from '../../services/api';
-
 import {Context} from '../../Context/AuthContext';
 
-import {Main,Label,InputField,AlertMenssage,FieldArea} from '../../styles/global';
+import Modal from '../../components/Modal';
+import CloseModal from '../../components/CloseModal';
+
+import {Main,Label,InputField,AlertMenssage,FieldArea,Menssage,Title} from '../../styles/global';
 import {LoginForm,Logo,ButtonLogin} from './style';
 
 import LogoImg from '../../assets/img/logo.svg';
 
 const Login = () => {
     const history = useHistory();
+    const [showModal,setShowModal] = useState(false);
 
     const LoginSchema = yup.object().shape({
         email: yup.string().email('Por favor, informe um email valido.').required('Por favor, informe seu email.'),
@@ -24,14 +27,13 @@ const Login = () => {
     const {token,setToken} = useContext(Context);
 
     const handleLogin = async (data) => {
-        try{
-            const response = await api.post('/users/login', data);
+        api.post('/users/login',data).then(response => {
             localStorage.setItem('token', response.data.token);
             setToken(response.data.token);
             history.push('/');
-        }catch(error){
-            console.log(error);
-        }
+        }).catch(() => {
+            setShowModal(true);
+        });
     }
 
     if(token !== ''){
@@ -86,6 +88,16 @@ const Login = () => {
                     </LoginForm>
                 )}
             </Formik>
+            <Modal openModal={showModal}>
+                 <CloseModal onClick={()=> {setShowModal(!showModal)}}/>
+                 <Menssage>
+                    <Title>Login</Title>
+                    <p>
+                        Ops, houve um problema ao realizar o login!<br/>
+                        Verifique o email e a senha e tente novamente.
+                    </p>
+                 </Menssage>
+            </Modal>
        </Main>
     );
 }
