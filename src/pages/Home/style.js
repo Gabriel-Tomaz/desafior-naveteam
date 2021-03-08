@@ -77,6 +77,7 @@ export const CardActions = styled.div`
     svg{
         margin-right: 8px;
         cursor: pointer;
+        transition: all 0.2s;
 
         &:hover{
             opacity: 0.9;

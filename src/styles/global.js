@@ -74,14 +74,14 @@ export const Menssage = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    
-    h2{
-        color: #212121;
-        font-weight: 600;
-    }
 
     p{
         color: #212121;
         margin-top: 30px;
     }
 `;
+
+export const Title = styled.h2`
+    color: #212121;
+    font-weight: 600;
+`
