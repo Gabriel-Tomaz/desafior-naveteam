@@ -9,7 +9,7 @@ import FormComponent from '../../components/FormComponent';
 import Modal from '../../components/Modal';
 import CloseModal from '../../components/CloseModal';
 
-import {Main,Menssage} from '../../styles/global';
+import {Main,Menssage,Title} from '../../styles/global';
 
 
 const Register = () => {
@@ -44,7 +44,7 @@ const Register = () => {
             <Modal openModal={showMenssage}>
                 <CloseModal onClick={() => {setShowMenssage(!showMenssage)}}/>
                 <Menssage>
-                    <h2>Naver Criado</h2>
+                    <Title>Naver Criado</Title>
                     <p>{modalMenssage}</p>
                 </Menssage>
             </Modal>

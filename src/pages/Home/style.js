@@ -63,6 +63,7 @@ export const UserImg = styled.div`
     img{
         max-width: 100%;
         filter: grayscale(100);
+        cursor: pointer;
     }
 `;
 
@@ -77,6 +78,7 @@ export const CardActions = styled.div`
     svg{
         margin-right: 8px;
         cursor: pointer;
+        transition: all 0.2s;
 
         &:hover{
             opacity: 0.9;
