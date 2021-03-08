@@ -63,6 +63,7 @@ export const UserImg = styled.div`
     img{
         max-width: 100%;
         filter: grayscale(100);
+        cursor: pointer;
     }
 `;
 

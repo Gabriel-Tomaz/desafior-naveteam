@@ -18,16 +18,44 @@ const Home = () => {
     const history = useHistory();
     const {token} = useContext(Context);
     const [navers, setNavers] = useState([]);
-    const [naverId, setNaverId] = useState();
+    const [naver,setNaver] = useState([]);
+    const [naverId, setNaverId] = useState('');
     const [showDelete,setShowDelete] = useState(false);
     const [showMenssage, setShowMenssage] = useState(false);
-    const [showDetails, setShowDetails] = useState(true);
+    const [showDetails, setShowDetails] = useState(false);
 
-    const getUsers = async () => {
+    //Busca todos os Navers da API
+    const getNavers = async () => {
         api.get('/navers', {
             headers: {Authorization: `Bearer ${token}`}
         }).then(response => {
             setNavers(response.data);
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+    //Deleta um Naver
+    const deleteNaver= async (id) => {
+        api.delete(`/navers/${id}`, {
+            headers: {Authorization: `Bearer ${token}`}
+        }).then(response => {
+            console.log(response.data.message);
+            getNavers();
+            setShowDelete(false);
+            setShowMenssage(true);
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+    
+    //Busca um unico naver da API
+    const getNaver = async (id) =>{
+        api.get(`/navers/${id}`, {
+            headers: {Authorization: `Bearer ${token}`}
+        }
+        ).then(response => {
+            setNaver(response.data);
         }).catch(error => {
             console.log(error);
         });
@@ -39,25 +67,12 @@ const Home = () => {
     }
 
     const modalDetails = (id) => {
-        setNaverId(id);
         setShowDetails(true);
-    }
-
-    const deleteNaver= async (id) => {
-        api.delete(`/navers/${id}`, {
-            headers: {Authorization: `Bearer ${token}`}
-        }).then(response => {
-            console.log(response.data.message);
-            getUsers();
-            setShowDelete(false);
-            setShowMenssage(true);
-        }).catch(error => {
-            console.log(error);
-        });
+        getNaver(id);
     }
 
     useEffect(() => {
-        getUsers();
+        getNavers();
     }, []);
 
     return(
@@ -72,13 +87,13 @@ const Home = () => {
                     {navers.map(naver => (
                         <UserCard key={naver.id}>
                             <UserImg>
-                                <img src={naver.url} alt="Foto do Naver" />
+                                <img src={naver.url} alt="Foto do Naver" onClick={() => modalDetails(naver.id)}/>
                             </UserImg>
                             <h3>{naver.name}</h3>
                             <h3>{naver.job_role}</h3>
                             <CardActions>
                                 <MdDelete color="#212121" size={24} onClick={() => modalDeleteNaver(naver.id)}/>
-                                <MdModeEdit color="#212121" size={24} onClick={() => modalDetails(naver.id)}/>
+                                <MdModeEdit color="#212121" size={24} />
                             </CardActions>
                         </UserCard>
                     ))}
@@ -109,7 +124,7 @@ const Home = () => {
             {/*Modal de detlahes de um Naver*/}
             <Modal openModal={showDetails}>
                 <CloseModal onClick={() => {setShowDetails(!showDetails)}}/>
-                <Details id={naverId}/>
+                <Details naver={naver}/>
             </Modal>
 
         </Main>
