@@ -30,7 +30,7 @@ const EditNaver = () => {
         }).then((response) => {
             setOldNaver(response.data);
         }).catch(() => {
-            console.log('Erro');
+           
         });
     }
 
@@ -46,6 +46,7 @@ const EditNaver = () => {
             setTitle('Naver não atualizado');
             setModalMenssage('Ops, houve um erro ao atulizar o naver!');
             setShowMenssage(true);
+            setNaver('');
         });
     }
 

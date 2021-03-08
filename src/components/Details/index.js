@@ -34,7 +34,7 @@ const Details = ({naver,deleteNaver,editNaver}) => {
             }
         
             return age;
-            }
+        }
     }
 
     return(

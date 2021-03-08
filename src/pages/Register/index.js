@@ -1,6 +1,5 @@
 import React from 'react';
 import {useContext,useEffect,useState} from 'react';
-import {useHistory} from 'react-router-dom';
 
 import {Context} from '../../Context/AuthContext';
 import {NaverContext} from '../../Context/NaverContext';
@@ -15,7 +14,6 @@ import {Main,Menssage,Title} from '../../styles/global';
 
 
 const Register = () => {
-    const history =  useHistory();
     const {token} = useContext(Context);
     const {naver,setNaver} = useContext(NaverContext);
     const [showMenssage, setShowMenssage] = useState(false);
@@ -31,6 +29,7 @@ const Register = () => {
         }).catch(() => {
             setModalMenssage('Erro ao cadastrar o Naver!');
             setShowMenssage(true);
+            setNaver('');
         });
     } 
 
