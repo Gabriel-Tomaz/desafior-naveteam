@@ -8,26 +8,28 @@ import api from '../../services/api';
 import Navbar from '../../components/Navbar';
 import FormComponent from '../../components/FormComponent';
 import Modal from '../../components/Modal';
-import CloseModal from '../../components/CloseModal';
 
-import {Main,Menssage,Title} from '../../styles/global';
+import {Main} from '../../styles/global';
 
 
 const Register = () => {
     const {token} = useContext(Context);
     const {naver,setNaver} = useContext(NaverContext);
     const [showMenssage, setShowMenssage] = useState(false);
-    const [modalMenssage, setModalMenssage] = useState('');
+    const [modalTitle, setModalTitle] = useState('');
+    const [modalText, setModalText] = useState('');
 
     const addNaver = async (data) => {
         api.post('/navers',data, {
             headers: {Authorization: `Bearer ${token}`}
         }).then(()=>{
-            setModalMenssage('Naver cadastrado com sucesso!');
+            setModalTitle('Naver criado');
+            setModalText('Naver criado com sucesso!');
             setShowMenssage(true);
             setNaver('');
         }).catch(() => {
-            setModalMenssage('Erro ao cadastrar o Naver!');
+            setModalTitle('Erro ao criar Naver');
+            setModalText('Ops, parece que houve um problema ao criar o Naver!');
             setShowMenssage(true);
             setNaver('');
         });
@@ -46,13 +48,12 @@ const Register = () => {
                 Title="Adicionar Naver"
             />
 
-            <Modal openModal={showMenssage}>
-                <CloseModal onClick={() => {setShowMenssage(!showMenssage)}} />
-                <Menssage>
-                    <Title>Naver Criado</Title>
-                    <p>{modalMenssage}</p>
-                </Menssage>
-            </Modal>
+            <Modal 
+                openModal={showMenssage} 
+                menssage={true}
+                title={modalTitle}
+                text={modalText}
+                closeModal={() => {setShowMenssage(!showMenssage)}} />
         </Main>
     );
 }

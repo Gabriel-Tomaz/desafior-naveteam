@@ -8,9 +8,8 @@ import api from '../../services/api';
 import {Context} from '../../Context/AuthContext';
 
 import Modal from '../../components/Modal';
-import CloseModal from '../../components/CloseModal';
 
-import {Main,Label,InputField,AlertMenssage,FieldArea,Menssage,Title} from '../../styles/global';
+import {Main,Label,InputField,AlertMenssage,FieldArea} from '../../styles/global';
 import {LoginForm,Logo,ButtonLogin} from './style';
 
 import LogoImg from '../../assets/img/logo.svg';
@@ -88,16 +87,15 @@ const Login = () => {
                     </LoginForm>
                 )}
             </Formik>
-            <Modal openModal={showModal}>
-                 <CloseModal onClick={()=> {setShowModal(!showModal)}}/>
-                 <Menssage>
-                    <Title>Login</Title>
-                    <p>
-                        Ops, houve um problema ao realizar o login!<br/>
-                        Verifique o email e a senha e tente novamente.
-                    </p>
-                 </Menssage>
-            </Modal>
+
+            <Modal 
+                openModal={showModal}
+                menssage={true}
+                title={'Login'}
+                text={'Ops, houve um problema ao realizar o login!'}
+                closeModal={()=> {setShowModal(!showModal)}}
+            />
+
        </Main>
     );
 }

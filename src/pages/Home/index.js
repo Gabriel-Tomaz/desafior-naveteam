@@ -9,9 +9,8 @@ import { Context } from '../../Context/AuthContext';
 import Navbar from '../../components/Navbar';
 import Modal from '../../components/Modal';
 import Details from '../../components/Details';
-import CloseModal from '../../components/CloseModal';
-import {Main,Button,Menssage,Title} from '../../styles/global';
-import {HomeContent,HomeListHeader,UsersList,UserCard,UserImg,CardActions,DeleteContent,CancelButton} from './style';
+import {Main,Button} from '../../styles/global';
+import {HomeContent,HomeListHeader,UsersList,UserCard,UserImg,CardActions} from './style';
 
 
 const Home = () => {    
@@ -20,9 +19,11 @@ const Home = () => {
     const [navers, setNavers] = useState([]);
     const [naver,setNaver] = useState([]);
     const [naverId, setNaverId] = useState('');
+    const [modalTitle, setModalTitle] = useState('');
+    const [modalText, setModalText] = useState('');
     const [showDelete,setShowDelete] = useState(false);
-    const [showMenssage, setShowMenssage] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
+    const [deleteMenssage, setDeleteMenssage] = useState(false);
 
     //Busca todos os Navers da API
     const getNavers = async () => {
@@ -43,9 +44,14 @@ const Home = () => {
             console.log(response.data.message);
             getNavers();
             setShowDelete(false);
-            setShowMenssage(true);
-        }).catch(error => {
-            console.log(error);
+            setModalTitle('Naver Excluido');
+            setModalText('Naver excluido com sucesso!');
+            setDeleteMenssage(true);
+        }).catch(() => {
+            setShowDelete(false);
+            setModalTitle('Excluir Naver');
+            setModalText('Ops, parece que houve um erro ao excluir o Naver!');
+            setDeleteMenssage(true);
         });
     }
     
@@ -100,8 +106,8 @@ const Home = () => {
                 </UsersList>
             </HomeContent>
 
-            {/*Modal de exclusão do Naver*/}
-            <Modal openModal={showDelete}>
+            
+            {/* <Modal openModal={showDelete}>
                 <DeleteContent>
                     <Title>Excluir Naver</Title>
                     <p>Tem certeza que deseja excluir este Naver ?</p>
@@ -112,7 +118,7 @@ const Home = () => {
                 </DeleteContent>
             </Modal>
 
-            {/*Modal de menssagem da exclusão*/}
+            
             <Modal openModal={showMenssage}>
                 <CloseModal onClick={() => {setShowMenssage(!showMenssage)}}/>
                 <Menssage>
@@ -121,9 +127,37 @@ const Home = () => {
                 </Menssage>
             </Modal>
 
-            {/*Modal de detlahes de um Naver*/}
+        
             <Modal openModal={showDetails}>
                 <CloseModal onClick={() => {setShowDetails(!showDetails)}}/>
+                <Details 
+                    naver={naver}
+                    deleteNaver={() => modalDeleteNaver(naverId)}
+                    editNaver={() => {history.push(`/Edit/${naverId}`)}}
+                />
+            </Modal> */}
+
+            {/* Modal de confirmação da exclusão do Naver */}
+            <Modal 
+                openModal={showDelete}
+                menssage={true}
+                title="Excluir Naver"
+                text="Tem certeza que deseja excluir este Naver ?"
+                buttons={true}
+                closeModal={() => {setShowDelete(!showDelete)}}
+                action={() => {deleteNaver(naverId)}}
+            />
+
+            {/* Modal de menssagem de sucesso ou erro na exclusão do naver */}
+            <Modal 
+                openModal={deleteMenssage}
+                menssage={true}
+                title={modalTitle}
+                text={modalText}
+                closeModal={() => {setDeleteMenssage(!deleteMenssage)}}
+            />
+
+            <Modal openModal={showDetails} closeModal={() => setShowDetails(!showDetails)}>
                 <Details 
                     naver={naver}
                     deleteNaver={() => modalDeleteNaver(naverId)}

@@ -83,35 +83,3 @@ export const CardActions = styled.div`
         }
     }
 `;
-
-//Delete Naver
-export const DeleteContent = styled.div`
-    width: 90%;
-    height: 240px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-
-    h2{
-        font-weight: 600;
-        color: #212121;
-    }
-
-    p{
-        color: #212121;
-    }
-
-    div{
-        width: 70%;
-        display: flex;
-        justify-content: space-around;
-        align-self: flex-end;
-    }
-`;
-
-export const CancelButton = styled(Button)`
-    background-color: #FFF;
-    border: solid 1px #212121;
-    color: #212121;
-`; 
