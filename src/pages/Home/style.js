@@ -38,10 +38,9 @@ export const UsersList = styled.div`
 export const UserCard = styled.div`
     width: 100%;
     height: auto;
-    min-height: 100%;
+    min-height: 420px;
     display: flex;
     flex-direction: column;
-
 
     h3{
         margin-top: 5px;
@@ -55,7 +54,8 @@ export const UserCard = styled.div`
 //Imagem do Naver que fica no card.
 export const UserImg = styled.div`
     width: 100%;
-    height: 280px;
+    height: auto;
+    min-height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
