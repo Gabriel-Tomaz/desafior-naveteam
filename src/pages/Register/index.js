@@ -2,7 +2,8 @@ import React from 'react';
 import {useContext,useEffect,useState} from 'react';
 import {useHistory} from 'react-router-dom';
 
-import {Context} from '../../Context/NaverContext';
+import {Context} from '../../Context/AuthContext';
+import {NaverContext} from '../../Context/NaverContext';
 import api from '../../services/api';
 
 import Navbar from '../../components/Navbar';
@@ -15,12 +16,15 @@ import {Main,Menssage,Title} from '../../styles/global';
 
 const Register = () => {
     const history =  useHistory();
-    const {naver,setNaver} = useContext(Context);
+    const {token} = useContext(Context);
+    const {naver,setNaver} = useContext(NaverContext);
     const [showMenssage, setShowMenssage] = useState(false);
     const [modalMenssage, setModalMenssage] = useState('');
 
     const addNaver = async (data) => {
-        api.post('/navers',data).then(()=>{
+        api.post('/navers',data, {
+            headers: {Authorization: `Bearer ${token}`}
+        }).then(()=>{
             setModalMenssage('Naver cadastrado com sucesso!');
             setShowMenssage(true);
             setNaver('');
@@ -44,11 +48,7 @@ const Register = () => {
             />
 
             <Modal openModal={showMenssage}>
-                <CloseModal onClick={() => {
-                        setShowMenssage(!showMenssage);
-                        history.push('/');
-                    }}
-                />
+                <CloseModal onClick={() => {setShowMenssage(!showMenssage)}} />
                 <Menssage>
                     <Title>Naver Criado</Title>
                     <p>{modalMenssage}</p>

@@ -4,7 +4,8 @@ import {useHistory} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 
 import api from '../../services/api';
-import {Context} from '../../Context/NaverContext';
+import {Context} from '../../Context/AuthContext'; 
+import {NaverContext} from '../../Context/NaverContext';
 
 import Navbar from '../../components/Navbar';
 import FormComponent from '../../components/FormComponent';
@@ -16,14 +17,17 @@ import {Main,Menssage,Title} from '../../styles/global';
 const EditNaver = () => {
     const history = useHistory();
     const {id} = useParams();
-    const {naver,setNaver} = useContext(Context);
+    const {token} = useContext(Context);
+    const {naver,setNaver} = useContext(NaverContext);
     const [oldNaver, setOldNaver] = useState();
     const [showMenssage, setShowMenssage] = useState(false);
     const [title,setTitle] = useState('');
     const [modalMenssage, setModalMenssage] = useState('');
 
     const getNaver = async (id) => {
-        await api.get(`/navers/${id}`).then((response) => {
+        await api.get(`/navers/${id}`,{
+            headers: {Authorization: `Bearer ${token}`}
+        }).then((response) => {
             setOldNaver(response.data);
         }).catch(() => {
             console.log('Erro');
@@ -31,7 +35,9 @@ const EditNaver = () => {
     }
 
     const handleEdit = async (naver) => {
-        api.put(`/navers/${id}`,naver).then(() => {  
+        api.put(`/navers/${id}`,naver ,{
+            headers: {Authorization: `Bearer ${token}`}
+        }).then(() => {  
             setTitle('Naver Atualizado');
             setModalMenssage('Naver atualizado com sucesso!');
             setShowMenssage(true);

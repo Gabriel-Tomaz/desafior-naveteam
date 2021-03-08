@@ -1,7 +1,7 @@
 import React from 'react';
 import {createContext,useState} from 'react';
 
-const Context = createContext();
+const NaverContext = createContext();
 
 const NaverProvider = ({children}) => {
     const [naver, setNaver] = useState('');
@@ -9,10 +9,10 @@ const NaverProvider = ({children}) => {
 
 
     return(
-        <Context.Provider value={{naver,setNaver}}>
+        <NaverContext.Provider value={{naver,setNaver}}>
             {children}
-        </Context.Provider>
+        </NaverContext.Provider>
     );
 } 
 
-export {Context, NaverProvider};
+export {NaverContext, NaverProvider};

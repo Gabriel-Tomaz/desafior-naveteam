@@ -16,12 +16,6 @@ const AuthProvider = ({children}) => {
         }
     },[]);
 
-    useEffect(() => {
-        if(token){
-            api.defaults.headers.Authorization = `Bearer ${token}`;
-        }
-    },[token]);
-
     return(
         <Context.Provider value={{token,setToken}}>
             {children}
