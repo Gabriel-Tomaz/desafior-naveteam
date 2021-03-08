@@ -55,16 +55,14 @@ export const UserCard = styled.div`
 //Imagem do Naver que fica no card.
 export const UserImg = styled.div`
     width: 100%;
-    height: auto;
+    height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    img{
-        max-width: 100%;
-        filter: grayscale(100);
-        cursor: pointer;
-    }
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100);
+    cursor: pointer;
 `;
 
 //Div das ações que podem ser executadas no card.

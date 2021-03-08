@@ -88,9 +88,7 @@ const Home = () => {
                 <UsersList>
                     {navers.map(naver => (
                         <UserCard key={naver.id}>
-                            <UserImg>
-                                <img src={naver.url} alt="Foto do Naver" onClick={() => modalDetails(naver.id)}/>
-                            </UserImg>
+                            <UserImg style={{backgroundImage: `url(${naver.url})`}} onClick={() => modalDetails(naver.id)} />
                             <h3>{naver.name}</h3>
                             <h3>{naver.job_role}</h3>
                             <CardActions>
