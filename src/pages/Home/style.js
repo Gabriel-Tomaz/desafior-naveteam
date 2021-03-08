@@ -26,7 +26,7 @@ export const HomeListHeader = styled.div`
 
 export const UsersList = styled.div`
     width: 90%;
-    height: 60vh;
+    height: 65vh;
     display: grid;
     grid-template-columns: repeat(4, calc(100% / 4.3));
     grid-template-rows: 100%;
@@ -54,8 +54,7 @@ export const UserCard = styled.div`
 //Imagem do Naver que fica no card.
 export const UserImg = styled.div`
     width: 100%;
-    height: auto;
-    min-height: 280px;
+    height: 55%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,6 +62,11 @@ export const UserImg = styled.div`
     background-position: center;
     filter: grayscale(100);
     cursor: pointer;
+
+
+    @media(min-width: 1366px) and (max-width: 1367px) {
+        height: 65%;
+    }
 `;
 
 //Div das ações que podem ser executadas no card.
