@@ -4,10 +4,9 @@ import {MdDelete,MdModeEdit} from 'react-icons/md';
 import {Title,Label} from '../../styles/global';
 import {DetailsBody,NaverDetails,DetailsActions,DetailsArea} from './style';
  
-const Details = ({naver,deleteNaver}) => {
+const Details = ({naver,deleteNaver,editNaver}) => {
 
      //Função para calcular idade do usuário e o tempo de empresa.
-
      function ageCalculator(date){
         const data = new Date();
     
@@ -66,7 +65,7 @@ const Details = ({naver,deleteNaver}) => {
 
                 <DetailsActions>
                     <MdDelete color="#212121" size={24} onClick={deleteNaver}/>
-                    <MdModeEdit color="#212121" size={24} />
+                    <MdModeEdit color="#212121" size={24} onClick={editNaver}/>
                 </DetailsActions>
 
             </NaverDetails>

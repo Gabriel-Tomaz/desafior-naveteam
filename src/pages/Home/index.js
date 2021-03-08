@@ -129,6 +129,7 @@ const Home = () => {
                 <Details 
                     naver={naver}
                     deleteNaver={() => modalDeleteNaver(naverId)}
+                    editNaver={() => {history.push(`/Edit/${naverId}`)}}
                 />
             </Modal>
 

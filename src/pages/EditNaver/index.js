@@ -16,7 +16,7 @@ import {Main,Menssage,Title} from '../../styles/global';
 const EditNaver = () => {
     const history = useHistory();
     const {id} = useParams();
-    const {naver} = useContext(Context);
+    const {naver,setNaver} = useContext(Context);
     const [oldNaver, setOldNaver] = useState();
     const [showMenssage, setShowMenssage] = useState(false);
     const [title,setTitle] = useState('');
@@ -35,6 +35,7 @@ const EditNaver = () => {
             setTitle('Naver Atualizado');
             setModalMenssage('Naver atualizado com sucesso!');
             setShowMenssage(true);
+            setNaver('');
         }).catch(() => {
             setTitle('Naver não atualizado');
             setModalMenssage('Ops, houve um erro ao atulizar o naver!');
