@@ -5,6 +5,39 @@ import {Title,Label} from '../../styles/global';
 import {DetailsBody,NaverDetails,DetailsActions,DetailsArea} from './style';
  
 const Details = ({naver,deleteNaver}) => {
+
+     //Função para calcular idade do usuário e o tempo de empresa.
+
+     function ageCalculator(date){
+        const data = new Date();
+    
+        const year = data.getFullYear();
+        const month = data.getMonth()+1;
+        const day = data.getDate();
+
+        if(date !== undefined){
+            const birthYearPart = date.split('-');
+
+            const birthYear = birthYearPart[0];
+            const birthMounth = birthYearPart[1];
+            const birthDay = birthYearPart[2].split('T');
+
+            const age = year - birthYear;
+        
+            if(month <  birthMounth){
+                return age-1;
+            }else{
+                if(month === birthMounth){
+                    if(day < birthDay[0]){
+                        return age-1;
+                    }
+                }
+            }
+        
+            return age;
+            }
+    }
+
     return(
         <DetailsBody>
             <img src={naver.url} alt="Foto do Naver" />
@@ -15,12 +48,15 @@ const Details = ({naver,deleteNaver}) => {
                 </DetailsArea>
                 <DetailsArea>
                     <Label>Idade</Label>
-                    <p>{naver.birthdate}</p>
+                    <p>{ageCalculator(naver.birthdate)} anos</p>
                 </DetailsArea>
            
                 <DetailsArea>
                     <Label>Tempo de empresa</Label>
-                    <p>{naver.admission_date}</p>
+                    <p>
+                        {(ageCalculator(naver.admission_date) > 1) ? (ageCalculator(naver.admission_date)) : ('Menos de um') }
+                        {(ageCalculator(naver.admission_date) < 1) ? (' ano') : (' anos')}
+                    </p>
                 </DetailsArea>
 
                 <DetailsArea>
