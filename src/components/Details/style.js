@@ -7,11 +7,14 @@ export const DetailsBody = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+`;
 
-    img{
-        max-height: 100%;
-        filter: grayscale(100);
-    }
+export const NaverImg = styled.div`
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100);
 `;
 
 export const NaverDetails = styled.div`

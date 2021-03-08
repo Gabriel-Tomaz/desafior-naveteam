@@ -2,7 +2,7 @@ import React from 'react';
 import {MdDelete,MdModeEdit} from 'react-icons/md';
 
 import {Title,Label} from '../../styles/global';
-import {DetailsBody,NaverDetails,DetailsActions,DetailsArea} from './style';
+import {DetailsBody,NaverDetails,DetailsActions,DetailsArea,NaverImg} from './style';
  
 const Details = ({naver,deleteNaver,editNaver}) => {
 
@@ -39,7 +39,7 @@ const Details = ({naver,deleteNaver,editNaver}) => {
 
     return(
         <DetailsBody>
-            <img src={naver.url} alt="Foto do Naver" />
+            <NaverImg style={{backgroundImage: `url(${naver.url})`}} />
             <NaverDetails>
                 <DetailsArea>
                     <Title>{naver.name}</Title>
