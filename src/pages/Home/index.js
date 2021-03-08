@@ -63,12 +63,14 @@ const Home = () => {
 
     const modalDeleteNaver = (id) => {
         setNaverId(id);
+        setShowDetails(false);
         setShowDelete(true);
     }
 
     const modalDetails = (id) => {
         setShowDetails(true);
         getNaver(id);
+        setNaverId(id);
     }
 
     useEffect(() => {
@@ -124,7 +126,10 @@ const Home = () => {
             {/*Modal de detlahes de um Naver*/}
             <Modal openModal={showDetails}>
                 <CloseModal onClick={() => {setShowDetails(!showDetails)}}/>
-                <Details naver={naver}/>
+                <Details 
+                    naver={naver}
+                    deleteNaver={() => modalDeleteNaver(naverId)}
+                />
             </Modal>
 
         </Main>

@@ -4,7 +4,7 @@ import {MdDelete,MdModeEdit} from 'react-icons/md';
 import {Title,Label} from '../../styles/global';
 import {DetailsBody,NaverDetails,DetailsActions,DetailsArea} from './style';
  
-const Details = ({naver}) => {
+const Details = ({naver,deleteNaver}) => {
     return(
         <DetailsBody>
             <img src={naver.url} alt="Foto do Naver" />
@@ -29,7 +29,7 @@ const Details = ({naver}) => {
                 </DetailsArea>
 
                 <DetailsActions>
-                    <MdDelete color="#212121" size={24} />
+                    <MdDelete color="#212121" size={24} onClick={deleteNaver}/>
                     <MdModeEdit color="#212121" size={24} />
                 </DetailsActions>
 
