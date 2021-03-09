@@ -21,6 +21,7 @@ export const LoginForm = styled.form`
         width: 75%;
         height: 40vh;
         min-height: 350px;
+
     }
 
 `;
