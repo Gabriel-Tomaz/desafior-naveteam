@@ -10,6 +10,12 @@ export const LoginForm = styled.form`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        width: 90%;
+        height: 55vh;
+    }
+
 `;
 
 export const Logo = styled.img`
@@ -18,4 +24,9 @@ export const Logo = styled.img`
 
 export const ButtonLogin = styled(Button)`
     width: 80%;
-`
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        width: 90%;
+    }
+`;
+

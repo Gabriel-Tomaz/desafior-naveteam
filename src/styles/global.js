@@ -38,6 +38,10 @@ export const FieldArea = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        width: 90%;
+    }
 `;
 
 
