@@ -81,8 +81,6 @@ const Home = () => {
         getNavers();
     }, []);
 
-    console.log(navers);
-
     return(
         <Main>
             <Navbar />
