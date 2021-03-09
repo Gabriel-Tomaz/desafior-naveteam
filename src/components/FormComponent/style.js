@@ -18,6 +18,11 @@ export const FormContent = styled.div`
        justify-content: flex-start;
        margin-top: 80px;
     }
+
+    @media screen and (min-width:768px) and (max-width: 1024px){
+        margin-top: 100px;
+    }
+    
 `;
 
 export const FormHeader = styled.div`
