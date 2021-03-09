@@ -78,6 +78,15 @@ export const UsersList = styled.div`
         flex-direction: column;
         justify-content: flex-start;
     }
+
+    @media screen and (min-width:768px) and (max-width: 1024px){
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 48% 48%;
+        justify-content: space-between;
+        grid-template-rows: auto;
+
+    }
 `;
 
 //Card do Naver.
@@ -102,6 +111,18 @@ export const UserCard = styled.div`
         flex-direction: column;
         margin-bottom: 20px;
     }
+
+    @media screen and (min-width:768px) and (max-width: 1024px){
+        display: grid;
+        min-height: 50vh;
+    }
+
+    @media screen and (min-width:768px) and (max-width: 1024px){
+        height: 40vh;
+        min-height: auto;
+        margin-bottom: 0px;
+    }
+    
 `;
 
 //Imagem do Naver que fica no card.
@@ -127,6 +148,7 @@ export const UserImg = styled.div`
         display: flex;
         flex-direction: column;
     }
+    
 `;
 
 //Div das ações que podem ser executadas no card.
