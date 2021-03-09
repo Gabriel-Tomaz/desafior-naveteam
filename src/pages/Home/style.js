@@ -87,3 +87,24 @@ export const CardActions = styled.div`
         }
     }
 `;
+
+//404
+
+export const NotFound = styled.div`
+    width: 50%;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    img{
+        width: 200px;
+        opacity: 0.1;
+    }
+
+    h2{
+        position: absolute;
+    }
+`;
+

@@ -28,8 +28,6 @@ const EditNaver = () => {
             headers: {Authorization: `Bearer ${token}`}
         }).then((response) => {
             setOldNaver(response.data);
-        }).catch(() => {
-           
         });
     }
 
