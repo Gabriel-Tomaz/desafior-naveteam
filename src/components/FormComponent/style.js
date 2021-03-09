@@ -55,7 +55,8 @@ export const Form = styled.form`
     }
 
     @media(min-width: 1px) and (max-width: 768px) {
-        min-height: 85vh;
+        height: 85vh;
+        min-height: 600px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;

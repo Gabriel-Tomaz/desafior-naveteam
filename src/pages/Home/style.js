@@ -72,9 +72,8 @@ export const UsersList = styled.div`
     justify-content: space-between;
     overflow: auto;
 
-
     @media(min-width: 1px) and (max-width: 768px) {
-        height: 100%;
+        min-height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -101,7 +100,7 @@ export const UserCard = styled.div`
         min-height: 60vh;
         display: flex;
         flex-direction: column;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
     }
 `;
 
@@ -124,7 +123,7 @@ export const UserImg = styled.div`
 
 
     @media(min-width: 1px) and (max-width: 768px) {
-        height: 300px;
+        height: 350px;
         display: flex;
         flex-direction: column;
     }
@@ -166,6 +165,14 @@ export const NotFound = styled.div`
 
     h2{
         position: absolute;
+    }
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        width: 90%;
+
+        h2{
+            text-align: center;
+        }
     }
 `;
 

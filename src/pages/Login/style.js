@@ -14,6 +14,7 @@ export const LoginForm = styled.form`
     @media(min-width: 1px) and (max-width: 768px) {
         width: 90%;
         height: 55vh;
+        min-height: 350px;
     }
 
 `;
@@ -25,7 +26,7 @@ export const Logo = styled.img`
 export const ButtonLogin = styled(Button)`
     width: 80%;
 
-    @media(min-width: 1px) and (max-width: 768px) {
+      @media(min-width: 1px) and (max-width: 768px) {
         width: 90%;
     }
 `;
