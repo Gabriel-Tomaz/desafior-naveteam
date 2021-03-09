@@ -4,7 +4,7 @@ O navedex é uma aplicação voltada para o gerenciamento de membros da empresas
  
 ### Detalhes do desenvolvimento
  
-Eu desenvolvi esse projeto como desafio técnico da seleção para a empresa, o protótipo ao longo do desenvolvimento foi disponibilizado pela empresa.
+Eu desenvolvi esse projeto como desafio técnico da seleção para a empresa, o protótipo usado ao longo do desenvolvimento foi disponibilizado pela empresa.
 
 O projeto foi desenvolvido com <b>React</b> e <b>Styled-components</b>. Para o gerenciamento de estados da aplicação eu utilizei a <b>Context API</b> do próprio react com o auxílio do <b>Local Storage</b> do Javascript. A aplicação encontra-se responsiva para desktops.
  
