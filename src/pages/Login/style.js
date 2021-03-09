@@ -17,6 +17,12 @@ export const LoginForm = styled.form`
         min-height: 350px;
     }
 
+    @media screen and (min-width:768px) and (max-width: 1024px){
+        width: 75%;
+        height: 40vh;
+        min-height: 350px;
+    }
+
 `;
 
 export const Logo = styled.img`
