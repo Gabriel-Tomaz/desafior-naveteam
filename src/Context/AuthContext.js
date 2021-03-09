@@ -1,6 +1,5 @@
 import React from 'react';
 import {createContext,useState,useEffect} from 'react';
-import api from '../services/api';
 
 const Context = createContext();
 
@@ -15,12 +14,6 @@ const AuthProvider = ({children}) => {
             setToken('');
         }
     },[]);
-
-    useEffect(() => {
-        if(token){
-            api.defaults.headers.Authorization = `Bearer ${token}`;
-        }
-    },[token]);
 
     return(
         <Context.Provider value={{token,setToken}}>

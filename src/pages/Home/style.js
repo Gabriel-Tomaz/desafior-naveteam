@@ -26,7 +26,7 @@ export const HomeListHeader = styled.div`
 
 export const UsersList = styled.div`
     width: 90%;
-    height: 60vh;
+    height: 65vh;
     display: grid;
     grid-template-columns: repeat(4, calc(100% / 4.3));
     grid-template-rows: 100%;
@@ -38,10 +38,9 @@ export const UsersList = styled.div`
 export const UserCard = styled.div`
     width: 100%;
     height: auto;
-    min-height: 100%;
+    min-height: 420px;
     display: flex;
     flex-direction: column;
-
 
     h3{
         margin-top: 5px;
@@ -55,15 +54,18 @@ export const UserCard = styled.div`
 //Imagem do Naver que fica no card.
 export const UserImg = styled.div`
     width: 100%;
-    height: auto;
+    height: 55%;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    img{
-        max-width: 100%;
-        filter: grayscale(100);
-        cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100);
+    cursor: pointer;
+
+
+    @media(min-width: 1366px) and (max-width: 1367px) {
+        height: 65%;
     }
 `;
 
@@ -86,34 +88,23 @@ export const CardActions = styled.div`
     }
 `;
 
-//Delete Naver
-export const DeleteContent = styled.div`
-    width: 90%;
-    height: 240px;
+//404
+
+export const NotFound = styled.div`
+    width: 50%;
+    height: 420px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    img{
+        width: 200px;
+        opacity: 0.1;
+    }
 
     h2{
-        font-weight: 600;
-        color: #212121;
-    }
-
-    p{
-        color: #212121;
-    }
-
-    div{
-        width: 70%;
-        display: flex;
-        justify-content: space-around;
-        align-self: flex-end;
+        position: absolute;
     }
 `;
 
-export const CancelButton = styled(Button)`
-    background-color: #FFF;
-    border: solid 1px #212121;
-    color: #212121;
-`; 

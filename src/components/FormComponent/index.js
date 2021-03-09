@@ -5,14 +5,14 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import {MdKeyboardArrowLeft} from 'react-icons/md';
 
-import {Context} from '../../Context/NaverContext';
+import {NaverContext} from '../../Context/NaverContext';
 
 import {Label,InputField,Button,AlertMenssage} from '../../styles/global';
 import {FormContent,FormHeader,Form,FieldAreaForm,MaskedInput} from './style';
 
 const FormComponent = ({Title,data}) => {
     const history = useHistory();
-    const {setNaver} = useContext(Context);
+    const {setNaver} = useContext(NaverContext);
     const [initialValues, setInitialValues] = useState(
         {
             name: '',

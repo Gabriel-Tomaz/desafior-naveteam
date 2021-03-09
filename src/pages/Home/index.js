@@ -9,10 +9,10 @@ import { Context } from '../../Context/AuthContext';
 import Navbar from '../../components/Navbar';
 import Modal from '../../components/Modal';
 import Details from '../../components/Details';
-import CloseModal from '../../components/CloseModal';
-import {Main,Button,Menssage,Title} from '../../styles/global';
-import {HomeContent,HomeListHeader,UsersList,UserCard,UserImg,CardActions,DeleteContent,CancelButton} from './style';
+import {Main,Button, Title} from '../../styles/global';
+import {HomeContent,HomeListHeader,UsersList,UserCard,UserImg,CardActions,NotFound} from './style';
 
+import rocketImg from '../../assets/img/rocket.svg';
 
 const Home = () => {    
     const history = useHistory();
@@ -20,9 +20,11 @@ const Home = () => {
     const [navers, setNavers] = useState([]);
     const [naver,setNaver] = useState([]);
     const [naverId, setNaverId] = useState('');
+    const [modalTitle, setModalTitle] = useState('');
+    const [modalText, setModalText] = useState('');
     const [showDelete,setShowDelete] = useState(false);
-    const [showMenssage, setShowMenssage] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
+    const [deleteMenssage, setDeleteMenssage] = useState(false);
 
     //Busca todos os Navers da API
     const getNavers = async () => {
@@ -30,22 +32,24 @@ const Home = () => {
             headers: {Authorization: `Bearer ${token}`}
         }).then(response => {
             setNavers(response.data);
-        }).catch(error => {
-            console.log(error);
         });
     }
 
-    //Deleta um Naver
+    //Deletar um Naver
     const deleteNaver= async (id) => {
         api.delete(`/navers/${id}`, {
             headers: {Authorization: `Bearer ${token}`}
-        }).then(response => {
-            console.log(response.data.message);
+        }).then(() => {
             getNavers();
             setShowDelete(false);
-            setShowMenssage(true);
-        }).catch(error => {
-            console.log(error);
+            setModalTitle('Naver Excluido');
+            setModalText('Naver excluido com sucesso!');
+            setDeleteMenssage(true);
+        }).catch(() => {
+            setShowDelete(false);
+            setModalTitle('Excluir Naver');
+            setModalText('Ops, parece que houve um erro ao excluir o Naver!');
+            setDeleteMenssage(true);
         });
     }
     
@@ -85,47 +89,49 @@ const Home = () => {
                     <h1>Navers</h1>
                     <Button onClick={() => {history.push('/Register')}}>Adicionar Naver</Button>
                 </HomeListHeader>
-                <UsersList>
-                    {navers.map(naver => (
-                        <UserCard key={naver.id}>
-                            <UserImg>
-                                <img src={naver.url} alt="Foto do Naver" onClick={() => modalDetails(naver.id)}/>
-                            </UserImg>
-                            <h3>{naver.name}</h3>
-                            <h3>{naver.job_role}</h3>
-                            <CardActions>
-                                <MdDelete color="#212121" size={24} onClick={() => modalDeleteNaver(naver.id)}/>
-                                <MdModeEdit color="#212121" size={24} onClick={() => {history.push(`/Edit/${naver.id}`)}}/>
-                            </CardActions>
-                        </UserCard>
-                    ))}
-                </UsersList>
+                {(navers.length === 0) ? (
+                    <NotFound>
+                        <img src={rocketImg}/>
+                        <Title>Ops, parece que não tem ninguém aqui!</Title>
+                    </NotFound>
+                ):(
+                    <UsersList>
+                        {navers.map(naver => (
+                            <UserCard key={naver.id}>
+                                <UserImg style={{backgroundImage: `url(${naver.url})`}} onClick={() => modalDetails(naver.id)} />
+                                <h3>{naver.name}</h3>
+                                <h3>{naver.job_role}</h3>
+                                <CardActions>
+                                    <MdDelete color="#212121" size={24} onClick={() => modalDeleteNaver(naver.id)}/>
+                                    <MdModeEdit color="#212121" size={24} onClick={() => {history.push(`/Edit/${naver.id}`)}}/>
+                                </CardActions>
+                            </UserCard>
+                        ))}
+                    </UsersList>
+                )}
             </HomeContent>
 
-            {/*Modal de exclusão do Naver*/}
-            <Modal openModal={showDelete}>
-                <DeleteContent>
-                    <Title>Excluir Naver</Title>
-                    <p>Tem certeza que deseja excluir este Naver ?</p>
-                    <div>
-                        <CancelButton onClick={() => {setShowDelete(!showDelete)}}>Cancelar</CancelButton>
-                        <Button onClick={() => {deleteNaver(naverId)}}>Excluir</Button>
-                    </div>
-                </DeleteContent>
-            </Modal>
+            {/* Modal de confirmação da exclusão do Naver */}
+            <Modal 
+                openModal={showDelete}
+                menssage={true}
+                title="Excluir Naver"
+                text="Tem certeza que deseja excluir este Naver ?"
+                buttons={true}
+                closeModal={() => {setShowDelete(!showDelete)}}
+                action={() => {deleteNaver(naverId)}}
+            />
 
-            {/*Modal de menssagem da exclusão*/}
-            <Modal openModal={showMenssage}>
-                <CloseModal onClick={() => {setShowMenssage(!showMenssage)}}/>
-                <Menssage>
-                    <Title>Naver Excluido</Title>
-                    <p>Naver excluido com sucesso!</p>
-                </Menssage>
-            </Modal>
+            {/* Modal de menssagem de sucesso ou erro na exclusão do naver */}
+            <Modal 
+                openModal={deleteMenssage}
+                menssage={true}
+                title={modalTitle}
+                text={modalText}
+                closeModal={() => {setDeleteMenssage(!deleteMenssage)}}
+            />
 
-            {/*Modal de detlahes de um Naver*/}
-            <Modal openModal={showDetails}>
-                <CloseModal onClick={() => {setShowDetails(!showDetails)}}/>
+            <Modal openModal={showDetails} closeModal={() => setShowDetails(!showDetails)}>
                 <Details 
                     naver={naver}
                     deleteNaver={() => modalDeleteNaver(naverId)}

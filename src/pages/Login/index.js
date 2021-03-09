@@ -1,12 +1,13 @@
 import React from 'react';
-import {useContext} from 'react';
+import {useContext,useState} from 'react';
 import {useHistory,Redirect} from 'react-router-dom';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 
 import api from '../../services/api';
-
 import {Context} from '../../Context/AuthContext';
+
+import Modal from '../../components/Modal';
 
 import {Main,Label,InputField,AlertMenssage,FieldArea} from '../../styles/global';
 import {LoginForm,Logo,ButtonLogin} from './style';
@@ -15,6 +16,7 @@ import LogoImg from '../../assets/img/logo.svg';
 
 const Login = () => {
     const history = useHistory();
+    const [showModal,setShowModal] = useState(false);
 
     const LoginSchema = yup.object().shape({
         email: yup.string().email('Por favor, informe um email valido.').required('Por favor, informe seu email.'),
@@ -24,14 +26,13 @@ const Login = () => {
     const {token,setToken} = useContext(Context);
 
     const handleLogin = async (data) => {
-        try{
-            const response = await api.post('/users/login', data);
+        api.post('/users/login',data).then(response => {
             localStorage.setItem('token', response.data.token);
             setToken(response.data.token);
             history.push('/');
-        }catch(error){
-            console.log(error);
-        }
+        }).catch(() => {
+            setShowModal(true);
+        });
     }
 
     if(token !== ''){
@@ -86,6 +87,15 @@ const Login = () => {
                     </LoginForm>
                 )}
             </Formik>
+
+            <Modal 
+                openModal={showModal}
+                menssage={true}
+                title={'Login'}
+                text={'Ops, houve um problema ao realizar o login!'}
+                closeModal={()=> {setShowModal(!showModal)}}
+            />
+
        </Main>
     );
 }

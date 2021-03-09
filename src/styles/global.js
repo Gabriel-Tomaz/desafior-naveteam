@@ -66,21 +66,6 @@ export const AlertMenssage = styled.span`
     width: 100%;
 `;
 
-//Componente de Messagem usado dentro do Modal.
-export const Menssage = styled.div`
-    width: 90%;
-    height: 160px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-
-    p{
-        color: #212121;
-        margin-top: 30px;
-    }
-`;
-
 export const Title = styled.h2`
     color: #212121;
     font-weight: 600;

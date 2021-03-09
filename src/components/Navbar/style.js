@@ -16,6 +16,7 @@ export const NavBody = styled.div`
 
 export const NavLogo = styled.img`
     max-width: 10%;
+    cursor: pointer;
 `;
 
 export const LogoutLabel = styled(Label)`

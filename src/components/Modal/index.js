@@ -1,12 +1,26 @@
 import React from 'react';
 
-import {ModalBody,ModalContent} from './style';
+import {Button} from '../../styles/global';
+import {ModalBody,ModalContent,Menssage,Title,Text,ButtonsArea,CancelButton,Close} from './style';
 
-const Modal = ({openModal, children}) => {
+const Modal = ({children,openModal,closeModal,action,menssage,title,text,buttons}) => {
     return(
         <ModalBody openModal={openModal}>
             <ModalContent>
                 {children}
+                <Close size={24} color="#212121" onClick={closeModal}/> 
+                {(menssage === true) ? (
+                    <Menssage>
+                        <Title>{title}</Title>
+                        <Text>{text}</Text>
+                    </Menssage>
+                ):null}
+                {(buttons === true) ? (
+                    <ButtonsArea>
+                        <CancelButton onClick={closeModal}>Cancelar</CancelButton>
+                        <Button onClick={action}>Excluir</Button>
+                    </ButtonsArea>
+                ):null}
             </ModalContent>
         </ModalBody>
     );
