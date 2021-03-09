@@ -7,6 +7,12 @@ export const DetailsBody = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
 `;
 
 export const NaverImg = styled.div`
@@ -15,6 +21,15 @@ export const NaverImg = styled.div`
     background-size: cover;
     background-position: center;
     filter: grayscale(100);
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        width: 100%;
+        height: 350px;
+    }
+
+    @media screen and (min-width:768px) and (max-width: 1024px){
+        height: 500px;
+    }
 `;
 
 export const NaverDetails = styled.div`
@@ -27,6 +42,13 @@ export const NaverDetails = styled.div`
     p{
         color: #212121;
         margin-top: 8px;
+    }
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        width: 100%;
+    }
+    @media screen and (min-width:768px) and (max-width: 1024px){
+        height: 35vh;
     }
 `;
 

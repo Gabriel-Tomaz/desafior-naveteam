@@ -10,6 +10,14 @@ export const HomeContent = styled.div`
     flex-direction:column;
     justify-content: center;
     align-items: center;
+    
+    @media(min-width: 1px) and (max-width: 768px) {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 70px;
+    }
 `;
 
 export const HomeListHeader = styled.div`
@@ -22,6 +30,37 @@ export const HomeListHeader = styled.div`
     h1{
         font-weight: 600;
     }
+    
+    @media(min-width: 1px) and (max-width: 768px) {
+        button{
+            display: none;
+        }
+    }
+
+`;
+
+//Button addNaver
+
+export const AddNaver = styled.button`
+    display: none;
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        display: block;
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        bottom: 15px;
+        right: 25px;
+        background-color: #212121;
+        z-index: 100;
+        border: none;
+        border-radius: 100%;
+        outline: none;
+
+        &:active{
+            opacity: 0.9;
+        }
+    }
 `;
 
 export const UsersList = styled.div`
@@ -32,6 +71,22 @@ export const UsersList = styled.div`
     grid-template-rows: 100%;
     justify-content: space-between;
     overflow: auto;
+
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        height: auto;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    @media screen and (min-width:768px) and (max-width: 1024px){
+        display: grid;
+        grid-template-columns: 48% 48%;
+        grid-template-rows: 100%;
+        justify-content: space-between;
+    }
 `;
 
 //Card do Naver.
@@ -49,6 +104,13 @@ export const UserCard = styled.div`
             font-weight: 400;
         }
     }
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
+    }
 `;
 
 //Imagem do Naver que fica no card.
@@ -63,9 +125,10 @@ export const UserImg = styled.div`
     filter: grayscale(100);
     cursor: pointer;
 
-
-    @media(min-width: 1366px) and (max-width: 1367px) {
-        height: 65%;
+    @media(min-width: 1px) and (max-width: 768px) {
+        height: 350px;
+        display: flex;
+        flex-direction: column;
     }
 `;
 
@@ -105,6 +168,14 @@ export const NotFound = styled.div`
 
     h2{
         position: absolute;
+    }
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        width: 90%;
+
+        h2{
+            text-align: center;
+        }
     }
 `;
 

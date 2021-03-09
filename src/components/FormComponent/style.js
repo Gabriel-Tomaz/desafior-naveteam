@@ -12,6 +12,17 @@ export const FormContent = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media(min-width: 1px) and (max-width: 768px) {
+       width: 90%;
+       justify-content: flex-start;
+       margin-top: 80px;
+    }
+
+    @media screen and (min-width:768px) and (max-width: 1024px){
+        margin-top: 100px;
+    }
+    
 `;
 
 export const FormHeader = styled.div`
@@ -46,6 +57,21 @@ export const Form = styled.form`
         grid-column: 2;
         justify-self: end;
         right: 10px;
+    }
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        height: 85vh;
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-bottom: 20px;
+
+        button{
+            width: 95%;
+            right: 0;
+            justify-self: center;
+        }
     }
 `;
 

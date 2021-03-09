@@ -28,6 +28,13 @@ export const ModalContent = styled.div`
     align-items: center;
     background-color: #FFF;
     position: relative;
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        min-width: 90%;
+        min-height: 300px;
+    }
+
+   
 `;
 
 //Área dos textos do Modal
@@ -59,6 +66,14 @@ export const ButtonsArea = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        justify-content: space-between;
+    }
+
+    @media screen and (min-width:768px) and (max-width: 1024px){
+        justify-content: flex-end;
+    }
 `;
 
 //Botão de cancelar
