@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import {Button} from '../../styles/global';
+
 export const HomeContent = styled.div`
     width: 100%;
     height: auto;
@@ -8,6 +10,14 @@ export const HomeContent = styled.div`
     flex-direction:column;
     justify-content: center;
     align-items: center;
+    
+    @media(min-width: 1px) and (max-width: 768px) {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 70px;
+    }
 `;
 
 export const HomeListHeader = styled.div`
@@ -19,6 +29,37 @@ export const HomeListHeader = styled.div`
 
     h1{
         font-weight: 600;
+    }
+    
+    @media(min-width: 1px) and (max-width: 768px) {
+        button{
+            display: none;
+        }
+    }
+
+`;
+
+//Button addNaver
+
+export const AddNaver = styled.button`
+    display: none;
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        display: block;
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        bottom: 15px;
+        right: 25px;
+        background-color: #212121;
+        z-index: 100;
+        border: none;
+        border-radius: 100%;
+        outline: none;
+
+        &:active{
+            opacity: 0.9;
+        }
     }
 `;
 
@@ -33,7 +74,7 @@ export const UsersList = styled.div`
 
 
     @media(min-width: 1px) and (max-width: 768px) {
-        height: 70vh;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -83,7 +124,7 @@ export const UserImg = styled.div`
 
 
     @media(min-width: 1px) and (max-width: 768px) {
-        height: 400px;
+        height: 300px;
         display: flex;
         flex-direction: column;
     }

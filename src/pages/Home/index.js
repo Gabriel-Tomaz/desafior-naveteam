@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect,useContext} from 'react';
-import {MdDelete,MdModeEdit} from 'react-icons/md';
+import {MdDelete,MdModeEdit,MdAdd} from 'react-icons/md';
 import {useHistory} from 'react-router-dom';
 
 import api from '../../services/api';
@@ -10,7 +10,7 @@ import Navbar from '../../components/Navbar';
 import Modal from '../../components/Modal';
 import Details from '../../components/Details';
 import {Main,Button, Title} from '../../styles/global';
-import {HomeContent,HomeListHeader,UsersList,UserCard,UserImg,CardActions,NotFound} from './style';
+import {HomeContent,HomeListHeader,UsersList,UserCard,UserImg,CardActions,NotFound,AddNaver} from './style';
 
 import rocketImg from '../../assets/img/rocket.svg';
 
@@ -85,6 +85,9 @@ const Home = () => {
         <Main>
             <Navbar />
             <HomeContent>
+                <AddNaver onClick={() => {history.push('/Register')}}>
+                    <MdAdd color="#FFF" size={30}/>
+                </AddNaver>
                 <HomeListHeader>
                     <h1>Navers</h1>
                     <Button onClick={() => {history.push('/Register')}}>Adicionar Naver</Button>
