@@ -28,6 +28,11 @@ export const ModalContent = styled.div`
     align-items: center;
     background-color: #FFF;
     position: relative;
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        min-width: 90%;
+        min-height: 300px;
+    }
 `;
 
 //Área dos textos do Modal
@@ -57,7 +62,7 @@ export const ButtonsArea = styled.div`
     width: 90%;
     height: 75px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 `;
 
@@ -67,6 +72,10 @@ export const CancelButton = styled(Button)`
     border: solid 1px #212121;
     color: #212121;
     margin-right: 20px;
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        min-width: 150px;
+    }
 `; 
 
 //Butão de fechar o modal

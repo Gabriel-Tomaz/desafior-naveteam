@@ -53,13 +53,17 @@ export const Button = styled.button`
     font-weight: 600;
     color: #FFF;
     outline: none;
-    border: none;
+    border: solid 1px #212121;
     position: relative;
     cursor: pointer;
     text-transform: capitalize;
 
     &:active{
         opacity: 0.9;
+    }
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        min-width: 150px;
     }
 `;
 

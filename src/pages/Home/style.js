@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import {Button} from '../../styles/global';
-
 export const HomeContent = styled.div`
     width: 100%;
     height: auto;
@@ -32,6 +30,14 @@ export const UsersList = styled.div`
     grid-template-rows: 100%;
     justify-content: space-between;
     overflow: auto;
+
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 `;
 
 //Card do Naver.
@@ -48,6 +54,13 @@ export const UserCard = styled.div`
         &:nth-child(3){
             font-weight: 400;
         }
+    }
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
     }
 `;
 
@@ -66,6 +79,13 @@ export const UserImg = styled.div`
 
     @media(min-width: 1366px) and (max-width: 1367px) {
         height: 65%;
+    }
+
+
+    @media(min-width: 1px) and (max-width: 768px) {
+        height: 400px;
+        display: flex;
+        flex-direction: column;
     }
 `;
 
