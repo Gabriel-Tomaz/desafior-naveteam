@@ -125,12 +125,6 @@ export const UserImg = styled.div`
     filter: grayscale(100);
     cursor: pointer;
 
-
-    @media(min-width: 1366px) and (max-width: 1367px) {
-        height: 65%;
-    }
-
-
     @media(min-width: 1px) and (max-width: 768px) {
         height: 350px;
         display: flex;
