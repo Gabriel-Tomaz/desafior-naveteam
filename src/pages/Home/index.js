@@ -131,7 +131,11 @@ const Home = () => {
                 closeModal={() => {setDeleteMenssage(!deleteMenssage)}}
             />
 
-            <Modal openModal={showDetails} closeModal={() => setShowDetails(!showDetails)}>
+            <Modal 
+                openModal={showDetails} 
+                closeModal={() => setShowDetails(!showDetails)}
+                closeColor="#FFF"
+            >
                 <Details 
                     naver={naver}
                     deleteNaver={() => modalDeleteNaver(naverId)}
