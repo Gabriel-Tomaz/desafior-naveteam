@@ -75,7 +75,7 @@ const FormComponent = ({Title,data}) => {
             {({handleChange,handleBlur,handleSubmit,errors,touched,values}) => (
                 <FormContent>
                     <FormHeader>
-                        <MdKeyboardArrowLeft color="#212121" size={36} onClick={() => {history.goBack()}}/>
+                        <MdKeyboardArrowLeft color="#212121" size={36} onClick={() => {history.goBack()}} id="btn-goBack"/>
                         <h2>{Title}</h2>
                     </FormHeader>
                     <Form onSubmit={handleSubmit}>
@@ -87,6 +87,7 @@ const FormComponent = ({Title,data}) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.name}
+                                id="user-name"
                             />
                             {errors.name && touched.name ? (
                                 <AlertMenssage>{errors.name}</AlertMenssage>
@@ -101,6 +102,7 @@ const FormComponent = ({Title,data}) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.job_role}
+                                id="user-job"
                             />
                             {errors.job_role && touched.job_role ? (
                                 <AlertMenssage>{errors.job_role}</AlertMenssage>
@@ -116,6 +118,7 @@ const FormComponent = ({Title,data}) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.birthdate}
+                                id="user-birthDate"
                             />
                             {errors.birthdate && touched.birthdate ? (
                                 <AlertMenssage>{errors.birthdate}</AlertMenssage>
@@ -131,6 +134,7 @@ const FormComponent = ({Title,data}) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.admission_date}
+                                id="user-admission"
                             />
                             {errors.admission_date && touched.admission_date ? (
                                 <AlertMenssage>{errors.admission_date}</AlertMenssage>
@@ -145,6 +149,7 @@ const FormComponent = ({Title,data}) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.project}
+                                id="user-projects"
                             />
                             {errors.project && touched.project ? (
                                 <AlertMenssage>{errors.project}</AlertMenssage>
@@ -159,12 +164,13 @@ const FormComponent = ({Title,data}) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.url}
+                                id="user-url"
                             />
                             {errors.url && touched.url ? (
                                 <AlertMenssage>{errors.url}</AlertMenssage>
                             ):null}
                         </FieldAreaForm>
-                        <Button type="submit">Salvar</Button>
+                        <Button type="submit" id="btn-save">Salvar</Button>
                     </Form>
                 </FormContent>
             )}

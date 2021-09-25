@@ -64,6 +64,7 @@ const Login = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.email}
+                                id="user-email"
                             />
                             {errors.email && touched.email ? (
                                 <AlertMenssage>{errors.email}</AlertMenssage>
@@ -78,12 +79,13 @@ const Login = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}
+                                id="user-password"
                             />
                             {errors.password && touched.password ? (
                                 <AlertMenssage>{errors.password}</AlertMenssage>
                             ):null}
                         </FieldArea>
-                        <ButtonLogin type="submit">Entrar</ButtonLogin>
+                        <ButtonLogin type="submit" id="btn-login">Entrar</ButtonLogin>
                     </LoginForm>
                 )}
             </Formik>

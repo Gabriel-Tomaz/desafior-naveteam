@@ -90,7 +90,7 @@ const Home = () => {
                 </AddNaver>
                 <HomeListHeader>
                     <h1>Navers</h1>
-                    <Button onClick={() => {history.push('/Register')}}>Adicionar Naver</Button>
+                    <Button onClick={() => {history.push('/Register')}} id="btn-add-naver">Adicionar Naver</Button>
                 </HomeListHeader>
                 {(navers.length === 0) ? (
                     <NotFound>
@@ -102,7 +102,7 @@ const Home = () => {
                         {navers.map(naver => (
                             <UserCard key={naver.id}>
                                 <UserImg style={{backgroundImage: `url(${naver.url})`}} onClick={() => modalDetails(naver.id)} />
-                                <h3>{naver.name}</h3>
+                                <h3 className="naver-name" >{naver.name}</h3>
                                 <h3>{naver.job_role}</h3>
                                 <CardActions>
                                     <MdDelete color="#212121" size={24} onClick={() => modalDeleteNaver(naver.id)}/>

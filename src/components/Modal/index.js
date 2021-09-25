@@ -5,10 +5,10 @@ import {ModalBody,ModalContent,Menssage,Title,Text,ButtonsArea,CancelButton,Clos
 
 const Modal = ({children,openModal,closeModal,action,menssage,title,text,buttons,closeColor}) => {
     return(
-        <ModalBody openModal={openModal}>
+        <ModalBody openModal={openModal} id="modal">
             <ModalContent>
                 {children}
-                <Close size={24} color={(closeColor) ? closeColor : '#212121'} onClick={closeModal}/> 
+                <Close size={24} color={(closeColor) ? closeColor : '#212121'} onClick={closeModal} id="btn-close"/> 
                 {(menssage === true) ? (
                     <Menssage>
                         <Title>{title}</Title>
